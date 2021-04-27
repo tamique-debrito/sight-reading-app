@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test File</title>
+  </head>
+  <body>
+    <h1>Testing</h1>
+    <p id='note'>..</p>
+    <input id='click-here' type='button'>---</input>
+  </body>
+
+  <script>
+
+    async function getFile(audioContext, filepath) {
+      const response = await fetch(filepath);
+      const arrayBuffer = await response.arrayBuffer();
+      const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+      return audioBuffer;
+    }
+
+    async function setupSample(audioContext, filePath) {
+      const sample = await getFile(audioContext, filePath);
+      return sample;
+    }
+
+    function playSample(audioContext, audioBuffer, time) {
+      const sampleSource = audioContext.createBufferSource();
+      sampleSource.buffer = audioBuffer;
+      sampleSource.connect(audioContext.destination)
+      sampleSource.start(time);
+      return sampleSource;
+    }
+
+    window.onload = function () {
+    }
+    document.querySelector('#click-here').addEventListener('click', function() {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      const audioCtx = new AudioContext();
+      audioCtx.resume().then(() => {
+        setupSample(audioCtx, './soundfiles/met_tick_high.mp3').then((sample) => {
+        setInterval(() => playSample(audioCtx, sample, 0), 1000);
+      });
+      console.log('Playback resumed successfully');
+    });
+    });
+
+  </script>
+
+</html>

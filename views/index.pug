@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  div(id='sheet-outer')
+    div(id='controls')
+      h1()='Sight Reading App'
+      button(type='button' id='start-button')='Start'
+      button(type='button' id='stop-button')='Stop'
+      label='Division:'
+      select(id='note-type')
+        option(value='quarter' selected)='quarter'
+        option(value='eighth')='eighth'
+        option(value='sixteenth')='sixteenth'
+      label='Bars:'
+      select(id='num-bars')
+        option(value='1')='1'
+        option(value='2')='2'
+        option(value='4' selected)='4'
+        option(value='8')='8'
+        option(value='inf')!='&#8734;'
+      label='Time Signature:'
+      select(id='time-sig')
+        option(value='3')='3/4'
+        option(value='4' selected)='4/4'
+      label='Clef:'
+      select(id='clef-type')
+        option(value='treble' selected)='Treble'
+        option(value='bass')='Bass'
+        option(value='alto')='Alto'
+      label='BPM:'
+      input(id='bpm' type='number' value='120' min='60' max='160' step='10')
+    div(id='sheet-render')

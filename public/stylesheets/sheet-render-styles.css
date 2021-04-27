@@ -1,0 +1,43 @@
+#sheet-outer div{
+  margin: 0 auto;
+}
+
+#controls > * {
+  margin-right: 5px;
+}
+
+
+#controls {
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+}
+
+#sheet-render svg{
+  display: block;
+  margin: 10px auto;
+  border: 2px solid #AAAAAA;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(0%);
+}
+
+.next {
+  opacity: 1;
+  transform: translateY(-40%);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.active {
+  opacity: 1;
+  transform: translateY(-80%);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.remove {
+  transform: translateY(-120%);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
