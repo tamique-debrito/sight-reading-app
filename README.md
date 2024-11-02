@@ -4,8 +4,7 @@ An app for practicing sight reading
 It continuously generates random sheet music while a metronome plays, according to some user-selected parameters.
 
 Here's what the page looks like:
-
-![image](https://github.com/user-attachments/assets/bca2c2e2-4aab-4d8d-827e-eb185468aa73)
+![image](https://github.com/user-attachments/assets/8f2af45e-9068-418e-9b1a-ecee8ef0f5eb)
 
 
 ![image](https://github.com/user-attachments/assets/30a5864d-0438-4483-8b29-a9cfa98acaee)
