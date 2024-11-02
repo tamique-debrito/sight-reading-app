@@ -1,7 +1,7 @@
 # sight-reading-app
 An app for practicing sight reading
 
-Just goes through some randomly-generated bars of sheet music while a metronome plays
+It continuously generates random sheet music while a metronome plays, according to some user-selected parameters.
 
 Here's what the page looks like:
 
