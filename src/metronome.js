@@ -8,12 +8,20 @@ VISUAL_TRANSITION_TIME = Constants.GENERAL.TRANSITION_TIME;
 
 getFile = audio_utils.getFile;
 playSample = audio_utils.playSample;
+genBuffer = audio_utils.genBuffer;
+
+const USE_FILES = false;
 
 
 async function getTickSamples(audioContext) {
-  const tick_high = await getFile(audioContext, MET_TICK_HIGH_PATH)
-  const tick_low = await getFile(audioContext, MET_TICK_LOW_PATH);
-  return [tick_high, tick_low];
+  if (USE_FILES) {
+    const tick_high = await getFile(audioContext, MET_TICK_HIGH_PATH)
+    const tick_low = await getFile(audioContext, MET_TICK_LOW_PATH);
+    return [tick_high, tick_low];
+  }
+  else {
+    return [genBuffer(audioContext, 440), genBuffer(audioContext, 220)];
+  }
 };
 
 const Metronome = function(count_in_beats, main_beats, beats_per_bar, bpm, audioContext,
