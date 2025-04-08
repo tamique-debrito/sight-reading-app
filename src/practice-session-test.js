@@ -44,6 +44,9 @@ App.prototype.run = function() {
     this.renderCtx = renderer.getContext();;
     this.initialized = true; 
   }
+  if (this.session !== null) {
+    this.session.stop();
+  }
   this.session = new practiceSession(options.num_bars, options.note_type, options.beats_per_bar, options.beats_per_bar, options.bpm,
     2, options.clef_type, this.renderCtx, this.audioCtx);
   this.session.start();
