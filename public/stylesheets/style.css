@@ -6,3 +6,35 @@ body {
 a {
   color: #00B7FF;
 }
+
+#start-button {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#start-button:hover {
+  background-color: darkgreen;
+}
+
+/* Style for the "stop" button */
+#stop-button {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#stop-button:hover {
+  background-color: darkred;
+}
+
+/* Increase spacing below the header */
+#header {
+  margin-bottom: 30px; /* Adjust the value as needed */
+}
