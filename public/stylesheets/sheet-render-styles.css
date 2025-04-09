@@ -2,8 +2,8 @@
   margin: 0 auto;
 }
 
-#controls > * {
-  margin-right: 5px;
+#controls * {
+  margin: 2px;
 }
 
 
