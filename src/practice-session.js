@@ -64,7 +64,7 @@ practiceSession.prototype.stop = function() {
 
 practiceSession.prototype.advance_bars = function() {
   if (this.running) {
-    console.log("trying to advance bars");
+    //console.log("trying to advance bars");
     if (this.current_bar !== null) {
       // console.log("trying to remove current bar and set next as active");
       this.current_bar.remove();
