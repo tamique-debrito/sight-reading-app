@@ -28,11 +28,13 @@ const practiceSession = function(num_bars, shortest_note, count_in_beats, beats_
   this.next_bar = null;
 
   this.running = false;
+  this.on_stop = null;
 }
 
-practiceSession.prototype.start = function() {
-  this.metronome.start();
+practiceSession.prototype.start = function(on_stop) {
+  this.metronome.start(this.stop.bind(this));
   this.running = true;
+  this.on_stop = on_stop
 
   this.setup();
 }
@@ -60,6 +62,7 @@ practiceSession.prototype.stop = function() {
   if (this.next_bar !== null) {
     this.next_bar.remove();
   }
+  this.on_stop();
 }
 
 practiceSession.prototype.advance_bars = function() {

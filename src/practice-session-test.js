@@ -4,7 +4,6 @@ practiceSession = require('./practice-session');
 practiceSession = practiceSession.practiceSession;
 
 VF = Vex.Flow;
-// Create an SVG renderer and attach it to the DIV element named "boo".
 
 window.onload = () => {
   var app = new App();
@@ -49,9 +48,24 @@ App.prototype.run = function() {
   }
   this.session = new practiceSession(options.num_bars, options.note_type, options.beats_per_bar, options.beats_per_bar, options.bpm,
     2, options.clef_type, this.renderCtx, this.audioCtx);
-  this.session.start();
+  this.session.start(() => toggleButtons(false));
+  toggleButtons(true);
 };
 
 App.prototype.stop = function() {
   this.session.stop();
+  toggleButtons(false);
 };
+
+function toggleButtons(isRunning) {
+  const startButton = document.getElementById('start-button');
+  const stopButton = document.getElementById('stop-button');
+
+  if (isRunning) {
+    startButton.style.display = 'none';
+    stopButton.style.display = 'inline-block';
+  } else {
+    startButton.style.display = 'inline-block';
+    stopButton.style.display = 'none';
+  }
+}
