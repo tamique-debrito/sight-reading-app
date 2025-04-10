@@ -43,26 +43,28 @@ const Metronome = function(count_in_beats, main_beats, beats_per_bar, bpm, audio
   this.total_num_callback_calls = Math.floor(main_beats / beats_per_bar);
   this.callback_start_time = null;
   this.callback_setinterval_ref = null;
+  this.trigger_stop = null;
 };
 
 Metronome.prototype.step_callback = function() {
   let curr_time = this.audioContext.currentTime;
   let delta_t = curr_time - this.callback_start_time;
   if (delta_t > 0) {
+    // Not sure if this "expected callbacks" stuff was actually in response to a bug or premptive hedging against callback delays
     let expected_num_callbacks = Math.floor(delta_t / this.bar_period);
     let outstanding_callbacks = expected_num_callbacks - this.callback_calls;
     for (let i=0; i < outstanding_callbacks; i++) {
       this.on_up_tick();
       this.callback_calls++;
       if (this.callback_calls >= this.total_num_callback_calls) {
-        clearInterval(this.callback_setinterval_ref);
+        this.trigger_stop();
         break;
       }
     }
   }
 }
 
-Metronome.prototype.start = function() {
+Metronome.prototype.start = function(trigger_stop) {
   let context = this.audioContext;
   context.resume().then(() => {
     getTickSamples(context).then(([tick_high, tick_low]) => {
@@ -83,6 +85,7 @@ Metronome.prototype.start = function() {
       if (this.on_up_tick !== null) {
         this.callback_start_time = ref_time + this.callback_initial_time_offset - this.offset_ahead_of_tick;
         this.callback_setinterval_ref = setInterval(this.step_callback.bind(this), this.callback_time_resolution);
+        this.trigger_stop = trigger_stop;
       }
     });
   });

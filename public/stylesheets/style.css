@@ -28,6 +28,7 @@ a {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  display: none;
 }
 
 #stop-button:hover {
