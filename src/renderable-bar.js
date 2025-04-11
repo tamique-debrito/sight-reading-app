@@ -37,7 +37,7 @@ renderableBar.prototype.set_active = function() {
 
 renderableBar.prototype.remove = function(time_until_remove=VISUAL_TRANSITION_TIME * 1000) {
   this.group.classList.add('remove');
-  setTimeout(() => this.render_context.svg.removeChild(this.group), time_until_remove);
+  setTimeout((() => this.render_context.svg.removeChild(this.group)).bind(this), time_until_remove);
 }
 
 module.exports.renderableBar = renderableBar;
