@@ -48,18 +48,23 @@ App.prototype.run = function() {
   }
   this.session = new practiceSession(options.num_bars, options.note_type, options.beats_per_bar, options.beats_per_bar, options.bpm,
     2, options.clef_type, this.renderCtx, this.audioCtx);
-  this.session.start(() => toggleButtons(false));
-  toggleButtons(true);
+  this.session.start(() => setButtonsState(false));
+  setButtonsState(true);
 };
 
 App.prototype.stop = function() {
   this.session.stop();
-  toggleButtons(false);
+  setButtonsState(false);
 };
 
-function toggleButtons(isRunning) {
+function setButtonsState(isRunning) {
   const startButton = document.getElementById('start-button');
   const stopButton = document.getElementById('stop-button');
+
+  const deactivatableControls = document.getElementsByClassName('deactivatable-control');
+  for (var control of deactivatableControls) {
+    control.disabled = isRunning;
+  }
 
   if (isRunning) {
     startButton.style.display = 'none';

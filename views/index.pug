@@ -6,28 +6,28 @@ block content
       h1()='Sight Reading App'
       div()
         label='Division:'
-        select(id='note-type')
+        select(id='note-type' class="deactivatable-control")
           option(value='quarter' selected)='quarter'
           option(value='eighth')='eighth'
           option(value='sixteenth')='sixteenth'
         label='Bars:'
-        select(id='num-bars')
+        select(id='num-bars' class="deactivatable-control")
           option(value='1')='1'
           option(value='2')='2'
           option(value='4' selected)='4'
           option(value='8')='8'
           option(value='inf')!='&#8734;'
         label='Time Signature:'
-        select(id='time-sig')
+        select(id='time-sig' class="deactivatable-control")
           option(value='3')='3/4'
           option(value='4' selected)='4/4'
         label='Clef:'
-        select(id='clef-type')
+        select(id='clef-type' class="deactivatable-control")
           option(value='treble' selected)='Treble'
           option(value='bass')='Bass'
           option(value='alto')='Alto'
         label='BPM:'
-        input(id='bpm' type='number' value='120' min='60' max='160' step='10')
+        input(id='bpm' class="deactivatable-control" type='number' value='120' min='60' max='160' step='10')
       div()
         button(type='button' id='start-button')='Start'
         button(type='button' id='stop-button')='Stop'
