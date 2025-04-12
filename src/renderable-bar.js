@@ -5,14 +5,14 @@ VF = Vex.Flow;
 
 VISUAL_TRANSITION_TIME = Constants.GENERAL.TRANSITION_TIME;
 
-const renderableBar = function(notes, clef_type, beats_per_bar, render_context, voice_length) {
+const renderableBar = function(notes, clef_type, beats_per_bar, beat_division, render_context, voice_length) {
   let stave_notes = notes.map((e, i) => new VF.StaveNote({clef: clef_type, keys: [e.note], duration: e.len_fmt}));
-  let voice = new VF.Voice({num_beats: beats_per_bar,  beat_value: 4});
+  let voice = new VF.Voice({num_beats: beats_per_bar,  beat_value: beat_division});
   voice.addTickables(stave_notes);
   var formatter = new VF.Formatter().joinVoices([voice]).format([voice], voice_length);
 
   this.clef_type = clef_type;
-  this.time_signature = `${beats_per_bar}/4`;
+  this.time_signature = `${beats_per_bar}/${beat_division}`;
   this.voice = voice
   this.render_context = render_context;
   this.group = null;

@@ -23,7 +23,7 @@ function getInputs() {
     note_type: document.getElementById('note-type').value,
     num_bars: parseInt(document.getElementById('num-bars').value) || 1e3,
     bpm: parseInt(document.getElementById('bpm').value),
-    beats_per_bar: parseInt(document.getElementById('time-sig').value),
+    time_sig: document.getElementById('time-sig').value,
     clef_type: document.getElementById('clef-type').value
   };
 };
@@ -46,7 +46,7 @@ App.prototype.run = function() {
   if (this.session !== null) {
     this.session.stop();
   }
-  this.session = new practiceSession(options.num_bars, options.note_type, options.beats_per_bar, options.beats_per_bar, options.bpm,
+  this.session = new practiceSession(options.num_bars, options.note_type, options.time_sig, options.bpm,
     2, options.clef_type, this.renderCtx, this.audioCtx);
   this.session.start(() => setButtonsState(false));
   setButtonsState(true);

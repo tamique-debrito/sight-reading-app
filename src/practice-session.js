@@ -7,17 +7,19 @@ renderableBar = renderableBar.renderableBar;
 generateSequence = generateSequence.generateSequence;
 
 
-const practiceSession = function(num_bars, shortest_note, count_in_beats, beats_per_bar, bpm, leap_amount, clef_type, renderContext, audioContext,
+const practiceSession = function(num_bars, shortest_note, time_sig, bpm, leap_amount, clef_type, renderContext, audioContext,
   voice_length=300, clef_length=350, clef_start_x=20, cleft_start_y=20, clef_y_spacing=160) {
+  const beats_per_bar = Number(time_sig.split("/")[0])
+  const beat_division = Number(time_sig.split("/")[1])
   let bars = generateSequence(num_bars, shortest_note, beats_per_bar, leap_amount, clef_type);
-  this.renderable_bars = bars.map((e, i) => new renderableBar(e, clef_type, beats_per_bar, renderContext, voice_length));
+  this.renderable_bars = bars.map((e, i) => new renderableBar(e, clef_type, beats_per_bar, beat_division, renderContext, voice_length));
 
   let main_beats = beats_per_bar * num_bars;
 
   this.num_bars = num_bars;
   this.voice_length = voice_length;
   this.clef_length = clef_length;
-  this.metronome = new Metronome(count_in_beats, main_beats, beats_per_bar, bpm, audioContext, this.advance_bars.bind(this));
+  this.metronome = new Metronome(beats_per_bar, main_beats, beats_per_bar, bpm, audioContext, this.advance_bars.bind(this));
 
   this.clef_length = clef_length;
   this.clef_start_x = clef_start_x;
