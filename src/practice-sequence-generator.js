@@ -50,10 +50,10 @@ function random_note_length(shortest_note, ticks_remaining) {
   return random_choice(get_candidate_notes(shortest_note, ticks_remaining))
 }
 
-function generateBar(shortest_note, beats_per_bar, leap_amount, clef_type) {
+function generateBar(shortest_note, beats_per_bar, beat_division, leap_amount, clef_type) {
   // shortest_note is one of 'quarter', 'eighth', 'sixteenth', 'thirtysecond'
   let note_range = 7;
-  let ticks_remaining = beats_per_bar * 8;
+  let ticks_remaining = beats_per_bar * 32 / beat_division;
   let notes_list = [];
   let current_note = random_start(note_range);
   let length_info = random_note_length(shortest_note, ticks_remaining);
@@ -69,10 +69,10 @@ function generateBar(shortest_note, beats_per_bar, leap_amount, clef_type) {
   return notes_list;
 }
 
-function generateSequence(num_bars, shortest_note, beats_per_bar, leap_amount, clef_type) {
+function generateSequence(num_bars, shortest_note, beats_per_bar, beat_division, leap_amount, clef_type) {
   let bars = []
   for (let i=0; i<num_bars; i++) {
-    bars.push(generateBar(shortest_note, beats_per_bar, leap_amount, clef_type));
+    bars.push(generateBar(shortest_note, beats_per_bar, beat_division, leap_amount, clef_type));
   }
 
   return bars;

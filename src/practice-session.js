@@ -11,7 +11,7 @@ const practiceSession = function(num_bars, shortest_note, time_sig, bpm, leap_am
   voice_length=300, clef_length=350, clef_start_x=20, cleft_start_y=20, clef_y_spacing=160) {
   const beats_per_bar = Number(time_sig.split("/")[0])
   const beat_division = Number(time_sig.split("/")[1])
-  let bars = generateSequence(num_bars, shortest_note, beats_per_bar, leap_amount, clef_type);
+  let bars = generateSequence(num_bars, shortest_note, beats_per_bar, beat_division, leap_amount, clef_type);
   this.renderable_bars = bars.map((e, i) => new renderableBar(e, clef_type, beats_per_bar, beat_division, renderContext, voice_length));
 
   let main_beats = beats_per_bar * num_bars;
